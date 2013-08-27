@@ -46,7 +46,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BNF\XSharp-BNF.txt" />
+    <Content Include="Ref\XSharp-BNF.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ref\ref.xrm" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,0 +1,34 @@
+﻿accounts <- find all account where name = "bob"
+change accounts{
+  set someProp to "test"
+}
+update accounts
+
+
+bob <- find one contact called "{guid}"
+delete bob
+
+#tom <- new account
+change tom {
+    set name to "Me"
+}
+create tom
+change tom {
+    set description to "test"
+}
+update tom
+
+me <- find one systemchanger where fullname = "Curtis Rutland" and something = "something"
+assign tom to me
+
+leads <- |<fetch mapping='logical'>
+   <entity name='account'> "
+      <attribute name='accountid'/> 
+      <attribute name='name'/> 
+      <link-entity name='systemuser' to='owninguser'> 
+         <filter type='and'> 
+            <condition attribute='lastname' operator='ne' value='Cannon' /> 
+          </filter> 
+      </link-entity> 
+   </entity> 
+</fetch>|
