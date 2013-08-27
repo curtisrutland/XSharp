@@ -1,0 +1,27 @@
+﻿<Program> ::= <StatementList>
+<StatementList> ::= <StatementLine>* | <eol>
+<StatementLine> ::= <Statement> eol
+<Statement> ::= <ChangeStatement> | <AssignStatement> | <CommandStatement>
+<CommandStatement> ::= <UnaryCommand> <entityCollection>
+					 | <BinaryCommand> <entityCollection> "to" <entityCollection>
+<UnaryCommand> ::= "create" | "update" | "delete"
+<BinaryCommand> ::= "assign" | "merge"
+<AssignStatement> ::= <entityCollection> "<-" <QueryStatement> 
+                    | <entityCollection> "<-" <CreateStatement>
+					| <entityCollection> "<-" <CreateAndInitializeStatement>
+<QueryStatement> ::= "find" <OrdinalOperator> <entityName> "where" <FilterStatementList>
+				   | "find" <OrdinalOperator> <entityName> "called" <guid>
+				   | <fetchXml>
+<OrdinalOperator> ::= "all" | "one"
+<FilterStatementList> ::= <FilterStatement>*
+<FilterStatement> ::= <FilterExpression> | <FilterExpression> <FilterOperator>
+<FilterOperator> ::= "and" | "or"
+<FilterExpression> ::= <attribute> <BinaryOperator> <ValueExpression>
+<CreateStatement> ::= "new" <entityName>
+<CreateAndInitializeStatement> ::= "new" <entityName> "called" <guid>
+<ChangeStatement> ::= "change" <entityCollection> "{" <eol> <SetStatementList> "}"
+<SetStatementList> ::= <SetStatement>*
+<SetStatement> ::= "set" <attribute> "to" <ValueExpression> <eol>
+<BinaryOperator> ::= "=" | "!=" | "<" | ">" | "<=" | ">="
+<ValueExpression> ::= <string> | <number> | <AttributeValueExpression>
+<AttributeValueExpression> ::= <entityCollection> "." <attribute>
